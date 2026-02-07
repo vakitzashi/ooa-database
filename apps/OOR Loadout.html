@@ -240,6 +240,49 @@
             position: relative;
             /* For positioning autocomplete */
         }
+
+        /* Share/Import Section Styles */
+        .share-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            margin: 20px 0;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .import-container {
+            display: flex;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .import-input {
+            flex: 1;
+            background: rgba(40, 50, 55, 0.5);
+            border: 2px solid var(--neon-cyan);
+            color: #fff;
+            padding: 12px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 11px;
+            text-align: center;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .import-input:focus {
+            background: rgba(79, 255, 227, 0.1);
+            box-shadow: 0 0 15px rgba(79, 255, 227, 0.2);
+        }
+
+        .share-btn {
+            background: rgba(79, 255, 227, 0.1);
+        }
+
+        .share-btn:hover {
+            background: rgba(79, 255, 227, 0.2);
+        }
     </style>
 </head>
 
@@ -380,6 +423,16 @@
     </div>
 
     <button class="save-btn back-btn" onclick="window.location.href='../index.html'">← BACK TO DATABASE</button>
+
+    <div class="share-section">
+        <div style="font-size: 10px; opacity: 0.5; margin-bottom: -10px;">SHARING SYSTEM V2</div>
+        <button class="save-btn share-btn" id="export-loadout">📤 EXPORT SHARE CODE</button>
+        <div class="import-container">
+            <input type="text" id="import-code" class="import-input" placeholder="PASTE SHARE CODE HERE...">
+            <button class="save-btn" id="import-loadout" style="margin: 0; max-width: 120px;">📥 IMPORT</button>
+        </div>
+    </div>
+
     <button class="save-btn" id="save-png">SAVE PNG</button>
 
     <script>
@@ -403,7 +456,89 @@
         document.addEventListener('DOMContentLoaded', () => {
             loadAllData();
             setupAutocomplete();
+
+            // Share functionality
+            document.getElementById('export-loadout').addEventListener('click', exportLoadout);
+            document.getElementById('import-loadout').addEventListener('click', importLoadout);
         });
+
+        // Export loadout to base64 code [V2]
+        function exportLoadout() {
+            const headerInput = document.querySelector('.header-input');
+            const inputs = document.querySelectorAll('.input-cell');
+
+            const loadout = {
+                name: headerInput ? headerInput.value : 'UNNAMED',
+                values: Array.from(inputs).map(i => i.value)
+            };
+
+            try {
+                const json = JSON.stringify(loadout);
+                // Standard secure UTF-8 to Base64
+                const code = btoa(unescape(encodeURIComponent(json)));
+
+                // Copy to clipboard
+                const el = document.createElement('textarea');
+                el.value = code;
+                document.body.appendChild(el);
+                el.select();
+                try {
+                    document.execCommand('copy');
+                    alert('✅ [V2] LOADOUT CODE COPIED TO CLIPBOARD!');
+                } catch (err) {
+                    console.error('V2 Copy failed:', err);
+                    alert('❌ [V2] FAILED TO COPY. PLEASE COPY MANUALLY: ' + code);
+                }
+                document.body.removeChild(el);
+            } catch (e) {
+                console.error('V2 Export error:', e);
+                alert('❌ [V2] FAILED TO GENERATE CODE');
+            }
+        }
+
+        // Import loadout from base64 code [V2]
+        function importLoadout() {
+            const importInput = document.getElementById('import-code');
+            let code = importInput.value.trim();
+
+            if (!code) {
+                alert('❌ [V2] PLEASE PASTE A CODE FIRST');
+                return;
+            }
+
+            // Critical: Remove ALL whitespace
+            code = code.replace(/\s/g, '');
+
+            try {
+                console.log('V2: Attempting to import code...');
+
+                // Standard Base64 to UTF-8
+                const json = decodeURIComponent(escape(atob(code)));
+                const loadout = JSON.parse(json);
+
+                console.log('V2: Decoded loadout:', loadout);
+
+                if (loadout.name) {
+                    document.querySelector('.header-input').value = loadout.name;
+                }
+
+                if (Array.isArray(loadout.values)) {
+                    const inputs = document.querySelectorAll('.input-cell');
+                    loadout.values.forEach((val, idx) => {
+                        if (inputs[idx]) {
+                            inputs[idx].value = val || '';
+                        }
+                    });
+                    alert('✅ [V2] LOADOUT IMPORTED SUCCESSFULLY!');
+                    importInput.value = '';
+                } else {
+                    throw new Error('Data structure invalid');
+                }
+            } catch (e) {
+                console.error('V2 Import error detail:', e);
+                alert('❌ [V2] INVALID LOADOUT CODE. Error: ' + e.message);
+            }
+        }
 
         // Load data
         async function loadAllData() {
@@ -598,7 +733,10 @@
 
         document.querySelectorAll('input').forEach(input => {
             input.addEventListener('input', function () {
-                this.value = this.value.toUpperCase();
+                // DON'T uppercase the share code field as base64 is case-sensitive!
+                if (this.id !== 'import-code') {
+                    this.value = this.value.toUpperCase();
+                }
             });
         });
     </script>
