@@ -1,0 +1,252 @@
+{
+  "weapon_classes": [
+    {
+      "class_name": "Штурмовые и Боевые винтовки (Assault Weapons)",
+      "weapons": [
+        {
+          "name": "Custodian",
+          "translation": "Страж",
+          "full_name": "A-TAC 88 Custodian",
+          "type": "Штурмовая винтовка",
+          "slot": "Основной",
+          "firemode": "Автоматический",
+          "stats": {
+            "damage": "44 - 34",
+            "headshot_multiplier": "1.65x",
+            "limb_multiplier": "0.75x",
+            "firerate": "700.0 выстр/мин",
+            "capacity": "32",
+            "time_to_ads": "0.325 с",
+            "speed_penalty": "0.6 м/с"
+          }
+        },
+        {
+          "name": "Nexus",
+          "translation": "Нексус",
+          "full_name": "LDS MBR-A6 Nexus",
+          "type": "Боевая винтовка",
+          "slot": "Основной",
+          "firemode": "Автоматический",
+          "stats": {
+            "damage": "60 - 45",
+            "headshot_multiplier": "1.65x",
+            "limb_multiplier": "0.75x",
+            "firerate": "500.0 выстр/мин",
+            "capacity": "20",
+            "time_to_ads": "0.35 с",
+            "speed_penalty": "0.75 м/с"
+          },
+          "integrated_mods": [
+            {
+              "name": "Precision Receiver (Точная ствольная коробка)",
+              "effects": [
+                "35% увеличение урона при прицеливании (ADS)",
+                "50% уменьшение прироста разброса при прицеливании",
+                "25% уменьшение горизонтальной отдачи при прицеливании",
+                "25% увеличение вертикальной отдачи при прицеливании",
+                "25% снижение скорострельности при прицеливании"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Helix",
+          "translation": "Спираль",
+          "full_name": "W&S SG5 Helix",
+          "type": "Винтовка с отсечкой очереди",
+          "slot": "Основной",
+          "firemode": "Очередь по 4",
+          "stats": {
+            "damage": "35 - 25",
+            "headshot_multiplier": "1.5x",
+            "limb_multiplier": "0.75x",
+            "burst_delay": "0.25 с",
+            "firerate": "1400.0 (в очереди) | 634 (общая) выстр/мин",
+            "capacity": "60",
+            "time_to_ads": "0.35 с",
+            "speed_penalty": "0.65 м/с"
+          },
+          "integrated_mods": [
+            {
+              "name": "Burst Accelerator (Ускоритель очереди)",
+              "effects": [
+                "Урон увеличивается на 5 с каждым выстрелом в очереди"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "class_name": "Пистолеты-пулемёты (Small Arms / SMG)",
+      "weapons": [
+        {
+          "name": "Icarus",
+          "translation": "Икар",
+          "full_name": "MA-SX5 Icarus",
+          "type": "ПП",
+          "slot": "Основной",
+          "firemode": "Автоматический",
+          "stats": {
+            "damage": "36 - 18",
+            "headshot_multiplier": "1.35x",
+            "limb_multiplier": "0.75x",
+            "firerate": "900.0 выстр/мин",
+            "capacity": "50",
+            "time_to_ads": "0.25 с",
+            "speed_penalty": "0.5 м/с"
+          }
+        }
+      ]
+    },
+    {
+      "class_name": "Снайперские и Марксманские винтовки (Precision Weapons)",
+      "weapons": [
+        {
+          "name": "Vigil",
+          "translation": "Бдение",
+          "full_name": "W&S SP-R Vigil",
+          "type": "Винтовка с продольно-скользящим затвором",
+          "slot": "Основной",
+          "firemode": "Ручная перезарядка",
+          "stats": {
+            "damage": "225 - 175",
+            "headshot_multiplier": "1.75x",
+            "limb_multiplier": "0.75x",
+            "firerate": "55 выстр/мин | 1.1 с досылание",
+            "capacity": "5",
+            "time_to_ads": "0.4 с",
+            "speed_penalty": "0.75 м/с"
+          },
+          "integrated_mods": [
+            {
+              "name": "Rechamber (Досылание патрона)",
+              "effects": [
+                "Досылание зависит от ловкости (до 15% быстрее)",
+                "Нельзя досылать патрон одной рукой"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Sentinel",
+          "translation": "Часовой",
+          "full_name": "A-TAC DMR-9 Sentinel",
+          "type": "Марксманская винтовка",
+          "slot": "Основной",
+          "firemode": "Полуавтоматический",
+          "stats": {
+            "damage": "135 - 100",
+            "headshot_multiplier": "1.75x",
+            "limb_multiplier": "0.75x",
+            "firerate": "220.0 выстр/мин",
+            "capacity": "10",
+            "time_to_ads": "0.375 с",
+            "speed_penalty": "0.7 м/с"
+          }
+        }
+      ]
+    },
+    {
+      "class_name": "Дробовики (Shotguns)",
+      "weapons": [
+        {
+          "name": "Typhon",
+          "translation": "Тифон",
+          "full_name": "MA-HA5-T3 Typhon",
+          "type": "Авто-дробовик",
+          "slot": "Основной",
+          "firemode": "Автоматический",
+          "stats": {
+            "damage": "20 - 10 | 8 дробинок",
+            "headshot_multiplier": "1.25x",
+            "limb_multiplier": "0.75x",
+            "firerate": "240.0 выстр/мин",
+            "capacity": "16",
+            "time_to_ads": "0.4 с",
+            "speed_penalty": "1.0 м/с"
+          }
+        },
+        {
+          "name": "Master-key",
+          "translation": "Отмычка",
+          "full_name": "A-TAC S20 Master-key",
+          "type": "Дробовик",
+          "slot": "Основной",
+          "firemode": "Ручная перезарядка",
+          "stats": {
+            "damage": "35 - 15 | 8 дробинок",
+            "headshot_multiplier": "1.25x",
+            "limb_multiplier": "0.75x",
+            "firerate": "112 выстр/мин | 0.5 с досылание",
+            "capacity": "8",
+            "time_to_ads": "0.325 с",
+            "speed_penalty": "0.65 м/с"
+          },
+          "integrated_mods": [
+            {
+              "name": "Rechamber (Досылание патрона)",
+              "effects": [
+                "Досылание зависит от ловкости (до 15% быстрее)",
+                "Нельзя досылать патрон одной рукой"
+              ]
+            },
+            {
+              "name": "Internal Mag (Внутренний магазин)",
+              "effects": [
+                "Патроны заряжаются по одному"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "class_name": "Тяжелое оружие / Поддержка (Support Weapons)",
+      "weapons": [
+        {
+          "name": "Inhibitor",
+          "translation": "Ингибитор",
+          "full_name": "LDS MXG-865 Inhibitor",
+          "type": "Ручной пулемёт",
+          "slot": "Основной",
+          "firemode": "Автоматический",
+          "stats": {
+            "damage": "48 - 34",
+            "headshot_multiplier": "1.5x",
+            "limb_multiplier": "0.75x",
+            "firerate": "600.0 выстр/мин",
+            "capacity": "75",
+            "time_to_ads": "0.425 с",
+            "speed_penalty": "1.25 м/с"
+          }
+        },
+        {
+          "name": "Warrant",
+          "translation": "Ордер",
+          "full_name": "A-TAC XGL6 Warrant",
+          "type": "Гранатомёт",
+          "slot": "Основной",
+          "firemode": "Полуавтоматический",
+          "stats": {
+            "damage": "100 - 50 Взрывной",
+            "explosive_range": "2 - 4 м",
+            "firerate": "75.0 выстр/мин",
+            "capacity": "4",
+            "velocity": "35.0 м/с",
+            "time_to_ads": "0.3 с",
+            "speed_penalty": "1.0 м/с"
+          },
+          "integrated_mods": [
+            {
+              "name": "Internal Mag (Внутренний магазин)",
+              "effects": [
+                "Снаряды заряжаются по одному"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

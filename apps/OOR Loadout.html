@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyberpunk Loadout Tracker</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@500;700&display=swap');
+
+        :root {
+            --neon-cyan: #4fffe3;
+            --bg-dark: #0a0c0d;
+            --panel-bg: rgba(25, 30, 32, 0.9);
+            --border-color: #2a3538;
+            --text-dim: #7a8a8e;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--neon-cyan);
+            font-family: 'Rajdhani', sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 10px;
+        }
+
+        /* Область захвата */
+        #capture-area {
+            background-color: var(--bg-dark);
+            padding: 20px;
+            border: 1px solid #1a2022;
+            width: 100%;
+            max-width: 1000px;
+            position: relative;
+        }
+
+        .header-input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid var(--neon-cyan);
+            color: var(--neon-cyan);
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(16px, 4vw, 24px);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            padding: 10px;
+            text-align: center;
+            outline: none;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .grid-container {
+                grid-template-columns: 1fr 1fr;
+                gap: 40px;
+            }
+
+            #capture-area {
+                padding: 40px;
+            }
+        }
+
+        .section-group {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 6px;
+            align-content: start;
+        }
+
+        .row {
+            display: flex;
+            align-items: stretch;
+            height: 32px;
+        }
+
+        .label-cell {
+            background: var(--panel-bg);
+            border-left: 3px solid var(--neon-cyan);
+            color: var(--neon-cyan);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            padding-left: 8px;
+            width: 100%;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .input-cell {
+            width: 100%;
+            background: rgba(40, 50, 55, 0.5);
+            border: none;
+            color: #fff;
+            padding: 0 10px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 11px;
+            outline: none;
+            text-transform: uppercase;
+        }
+
+        .input-cell:focus {
+            background: rgba(79, 255, 227, 0.1);
+        }
+
+        .augment-prefix::before {
+            content: ":: ";
+        }
+
+        .weapon-prefix::before {
+            content: "› ";
+            margin-right: 3px;
+        }
+
+        .center-square {
+            display: none;
+            justify-content: center;
+            margin: 10px 0;
+            grid-column: 1 / -1;
+        }
+
+        @media (min-width: 768px) {
+            .center-square {
+                display: flex;
+            }
+        }
+
+        .square-box {
+            width: 25px;
+            height: 25px;
+            border: 2px solid var(--neon-cyan);
+            opacity: 0.6;
+        }
+
+        .save-btn {
+            margin: 30px 0;
+            background: transparent;
+            color: var(--neon-cyan);
+            border: 2px solid var(--neon-cyan);
+            padding: 12px 30px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 14px;
+            cursor: pointer;
+            text-transform: uppercase;
+            width: 100%;
+            max-width: 300px;
+            transition: 0.3s;
+        }
+
+        .save-btn:active {
+            background: var(--neon-cyan);
+            color: #000;
+        }
+
+        .back-btn {
+            margin-bottom: 10px;
+            border-color: #7a8a8e;
+            color: #7a8a8e;
+        }
+
+        .back-btn:hover {
+            border-color: #fff;
+            color: #fff;
+        }
+
+        .weapon-label {
+            background: transparent !important;
+            border-left: none !important;
+        }
+
+        /* Стили для экспорта в PNG */
+        .exporting {
+            width: 1100px !important;
+            max-width: none !important;
+        }
+
+        .exporting .grid-container {
+            grid-template-columns: 1fr 1fr !important;
+        }
+
+        .exporting .center-square {
+            display: flex !important;
+        }
+
+        .exporting .center-square {
+            display: flex !important;
+        }
+
+        /* Autocomplete Styles */
+        .autocomplete-items {
+            position: absolute;
+            border: 1px solid var(--border-color);
+            border-bottom: none;
+            border-top: none;
+            z-index: 99;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background-color: var(--panel-bg);
+        }
+
+        .autocomplete-items div {
+            padding: 10px;
+            cursor: pointer;
+            background-color: var(--panel-bg);
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-dim);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        .autocomplete-items div:hover {
+            background-color: rgba(79, 255, 227, 0.1);
+            color: var(--neon-cyan);
+        }
+
+        .autocomplete-active {
+            background-color: rgba(79, 255, 227, 0.2) !important;
+            color: var(--neon-cyan) !important;
+        }
+
+        .row {
+            position: relative;
+            /* For positioning autocomplete */
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="capture-area">
+        <input type="text" class="header-input" placeholder="НАЗВАНИЕ СБОРКИ" value="GHOST SHREDDER">
+
+        <div class="grid-container">
+            <!-- ВЕРХ ЛЕВО -->
+            <div class="section-group">
+                <div class="row">
+                    <div class="label-cell">SHELL</div>
+                </div>
+                <div class="row"><input type="text" class="input-cell" value="GHOST" data-category="SHELL"></div>
+
+                <div class="row">
+                    <div class="label-cell">BACKUP</div>
+                </div>
+                <div class="row"><input type="text" class="input-cell" value="AKANAMI" data-category="BACKUP"></div>
+
+                <div class="row">
+                    <div class="label-cell">DEVICE 1</div>
+                </div>
+                <div class="row"><input type="text" class="input-cell" value="RESERVE STIM" data-category="DEVICE">
+                </div>
+
+                <div class="row">
+                    <div class="label-cell">DEVICE 2</div>
+                </div>
+                <div class="row"><input type="text" class="input-cell" placeholder="-" data-category="DEVICE"></div>
+            </div>
+
+            <!-- ВЕРХ ПРАВО -->
+            <div class="section-group">
+                <div class="row">
+                    <div class="label-cell augment-prefix">AUGMENT 1</div>
+                </div>
+                <div class="row"><input type="text" class="input-cell" value="SPECIALIST" data-category="AUGMENT"></div>
+
+                <div class="row">
+                    <div class="label-cell augment-prefix">AUGMENT 2</div>
+                </div>
+                <div class="row"><input type="text" class="input-cell" value="BLOODSPORT" data-category="AUGMENT"></div>
+
+                <div class="row">
+                    <div class="label-cell augment-prefix">AUGMENT 3</div>
+                </div>
+                <div class="row"><input type="text" class="input-cell" value="UNSTABLE CORE" data-category="AUGMENT">
+                </div>
+
+                <div class="row">
+                    <div class="label-cell augment-prefix">AUGMENT 4</div>
+                </div>
+                <div class="row"><input type="text" class="input-cell" placeholder="-" data-category="AUGMENT"></div>
+            </div>
+
+            <div class="center-square">
+                <div class="square-box"></div>
+            </div>
+
+            <!-- НИЗ ЛЕВО (SIDEARM) -->
+            <div class="section-group">
+                <div class="row">
+                    <div class="label-cell">SIDEARM</div>
+                </div>
+                <div class="row"><input type="text" class="input-cell" value="GEIST" data-category="SIDEARM"></div>
+
+                <div class="row">
+                    <div class="label-cell weapon-label weapon-prefix">OPTIC</div>
+                </div>
+                <div class="row"><input type="text" class="input-cell" value="REFLEX SIGHT" data-category="OPTIC"></div>
+
+                <div class="row">
+                    <div class="label-cell weapon-label weapon-prefix">AMMO</div>
+                </div>
+                <div class="row"><input type="text" class="input-cell" value="SHRED AMMO" data-category="AMMO"></div>
+
+                <div class="row">
+                    <div class="label-cell weapon-label weapon-prefix">MOD 1</div>
+                </div>
+                <div class="row"><input type="text" class="input-cell" value="SUPPRESSOR" data-category="MOD"></div>
+
+                <div class="row">
+                    <div class="label-cell weapon-label weapon-prefix">MOD 2</div>
+                </div>
+                <div class="row"><input type="text" class="input-cell" value="LASER SIGHT" data-category="MOD"></div>
+
+                <div class="row">
+                    <div class="label-cell weapon-label weapon-prefix">MOD 3</div>
+                </div>
+                <div class="row"><input type="text" class="input-cell" placeholder="-" data-category="MOD"></div>
+
+                <div class="row">
+                    <div class="label-cell weapon-label weapon-prefix">MOD 4</div>
+                </div>
+                <div class="row"><input type="text" class="input-cell" placeholder="-" data-category="MOD"></div>
+            </div>
+
+            <!-- НИЗ ПРАВО (PRIMARY) -->
+            <div class="section-group">
+                <div class="row">
+                    <div class="label-cell augment-prefix">PRIMARY</div>
+                </div>
+                <div class="row"><input type="text" class="input-cell" placeholder="-" data-category="PRIMARY"></div>
+
+                <div class="row">
+                    <div class="label-cell weapon-label weapon-prefix">OPTIC</div>
+                </div>
+                <div class="row"><input type="text" class="input-cell" placeholder="-" data-category="OPTIC"></div>
+
+                <div class="row">
+                    <div class="label-cell weapon-label weapon-prefix">AMMO</div>
+                </div>
+                <div class="row"><input type="text" class="input-cell" placeholder="-" data-category="AMMO"></div>
+
+                <div class="row">
+                    <div class="label-cell weapon-label weapon-prefix">MOD 1</div>
+                </div>
+                <div class="row"><input type="text" class="input-cell" placeholder="-" data-category="MOD"></div>
+
+                <div class="row">
+                    <div class="label-cell weapon-label weapon-prefix">MOD 2</div>
+                </div>
+                <div class="row"><input type="text" class="input-cell" placeholder="-" data-category="MOD"></div>
+
+                <div class="row">
+                    <div class="label-cell weapon-label weapon-prefix">MOD 3</div>
+                </div>
+                <div class="row"><input type="text" class="input-cell" placeholder="-" data-category="MOD"></div>
+
+                <div class="row">
+                    <div class="label-cell weapon-label weapon-prefix">MOD 4</div>
+                </div>
+                <div class="row"><input type="text" class="input-cell" placeholder="-" data-category="MOD"></div>
+            </div>
+        </div>
+    </div>
+
+    <button class="save-btn back-btn" onclick="window.location.href='../index.html'">← BACK TO DATABASE</button>
+    <button class="save-btn" id="save-png">SAVE PNG</button>
+
+    <script>
+        // Data storage
+        const gameData = {};
+
+        // Data mapping
+        const DATA_SOURCES = {
+            'SHELL': ['../data/SHELLS/SHELLS.json'],
+            'BACKUP': ['../data/WEAPON/BACKUPS.json'],
+            'DEVICE': ['../data/DEVICES/DEVICES.json'],
+            'AUGMENT': ['../data/SHELLS/AUGMENTS.json'],
+            'SIDEARM': ['../data/WEAPON/SIDEARM.json'],
+            'OPTIC': ['../data/DEVICES/OPTICS.json'],
+            'AMMO': ['../data/DEVICES/AMMO.json'],
+            'MOD': ['../data/DEVICES/MODS.json'],
+            'PRIMARY': ['../data/WEAPON/PRIMARY.json', '../data/WEAPON/HEAVY WEAPON.json']
+        };
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            loadAllData();
+            setupAutocomplete();
+        });
+
+        // Load data
+        async function loadAllData() {
+            for (const [category, paths] of Object.entries(DATA_SOURCES)) {
+                gameData[category] = [];
+                for (const path of paths) {
+                    try {
+                        const response = await fetch(path);
+                        if (response.ok) {
+                            const data = await response.json();
+                            const items = extractItems(data);
+                            gameData[category] = [...gameData[category], ...items];
+                        }
+                    } catch (e) {
+                        console.error(`Error loading ${path}:`, e);
+                    }
+                }
+            }
+        }
+
+        // Helper to extract items from different JSON structures
+        function extractItems(data) {
+            let items = [];
+            if (Array.isArray(data)) {
+                items = data;
+            } else if (typeof data === 'object') {
+                items = findItemsInObject(data);
+            }
+            // Filter to only valid items with names, handling Cyrillic keys
+            return items.map(i => {
+                let name = i.name || i.название || i.title || (i.class_name ? i.class_name : "");
+                // Extract only English part (remove Russian in parentheses)
+                // Format: "ENGLISH NAME (РУССКОЕ НАЗВАНИЕ)" -> "ENGLISH NAME"
+                if (name && name.includes('(')) {
+                    name = name.split('(')[0].trim();
+                }
+                return name;
+            }).filter(n => n && n.length > 0);
+        }
+
+        function findItemsInObject(obj, depth = 0) {
+            let items = [];
+            if (depth > 5) return items;
+            for (const key in obj) {
+                const value = obj[key];
+                if (Array.isArray(value)) {
+                    // Check if array contains objects
+                    if (value.length > 0 && typeof value[0] === 'object') {
+                        // Special handling for weapon_classes
+                        if (key === 'weapon_classes' && value[0].weapons) {
+                            value.forEach(wc => {
+                                if (wc.weapons) items = items.concat(wc.weapons);
+                            });
+                        } else {
+                            // General array of objects (like items in AMMO)
+                            items = items.concat(value);
+                        }
+                    }
+                } else if (typeof value === 'object' && value !== null) {
+                    // Recursive search
+                    if (value.items && Array.isArray(value.items)) {
+                        // Found an 'items' array inside an object (common in AMMO.json)
+                        items = items.concat(value.items);
+                    } else {
+                        items = items.concat(findItemsInObject(value, depth + 1));
+                    }
+                }
+            }
+            return items;
+        }
+
+        // Setup autocomplete
+        function setupAutocomplete() {
+            const inputs = document.querySelectorAll('input[data-category]');
+
+            inputs.forEach(input => {
+                input.addEventListener('input', function (e) {
+                    const val = this.value;
+                    const category = this.getAttribute('data-category');
+
+                    // Close any open lists
+                    closeAllLists();
+
+                    if (!val || val.length < 1) return;
+
+                    const list = document.createElement('div');
+                    list.setAttribute('class', 'autocomplete-items');
+                    this.parentNode.appendChild(list);
+
+                    const items = gameData[category] || [];
+                    let matchCount = 0;
+
+                    for (const item of items) {
+                        if (item.toUpperCase().includes(val.toUpperCase())) {
+                            const div = document.createElement('div');
+                            // Highlight match
+                            const regex = new RegExp(`(${val})`, 'gi');
+                            div.innerHTML = item.replace(regex, "<strong>$1</strong>");
+                            div.innerHTML += `<input type='hidden' value='${item}'>`;
+
+                            div.addEventListener('click', function () {
+                                input.value = this.getElementsByTagName('input')[0].value.toUpperCase();
+                                closeAllLists();
+                            });
+
+                            list.appendChild(div);
+                            matchCount++;
+                            if (matchCount > 10) break; // Limit suggestions
+                        }
+                    }
+                });
+
+                // Navigate with keys
+                input.addEventListener('keydown', function (e) {
+                    let list = this.parentNode.querySelector('.autocomplete-items');
+                    if (list) list = list.getElementsByTagName('div');
+                    if (!list) return;
+
+                    if (e.keyCode == 40) { // Down
+                        currentFocus++;
+                        addActive(list);
+                    } else if (e.keyCode == 38) { // Up
+                        currentFocus--;
+                        addActive(list);
+                    } else if (e.keyCode == 13) { // Enter
+                        e.preventDefault();
+                        if (currentFocus > -1) {
+                            if (list[currentFocus]) list[currentFocus].click();
+                        }
+                    }
+                });
+            });
+
+            // Close list when clicking outside
+            document.addEventListener('click', function (e) {
+                closeAllLists(e.target);
+            });
+        }
+
+        let currentFocus = -1;
+
+        function addActive(x) {
+            if (!x) return false;
+            removeActive(x);
+            if (currentFocus >= x.length) currentFocus = 0;
+            if (currentFocus < 0) currentFocus = (x.length - 1);
+            x[currentFocus].classList.add('autocomplete-active');
+        }
+
+        function removeActive(x) {
+            for (let i = 0; i < x.length; i++) {
+                x[i].classList.remove('autocomplete-active');
+            }
+        }
+
+        function closeAllLists(elmnt) {
+            const x = document.getElementsByClassName('autocomplete-items');
+            for (let i = 0; i < x.length; i++) {
+                if (elmnt != x[i] && elmnt != document.activeElement) {
+                    x[i].parentNode.removeChild(x[i]);
+                }
+            }
+            currentFocus = -1;
+        }
+
+        document.getElementById('save-png').addEventListener('click', function () {
+            const area = document.getElementById('capture-area');
+            const btn = this;
+
+            // Временный перевод в режим экспорта
+            area.classList.add('exporting');
+            btn.style.opacity = '0';
+
+            setTimeout(() => {
+                html2canvas(area, {
+                    backgroundColor: '#0a0c0d',
+                    scale: 2,
+                    logging: false,
+                    useCORS: true
+                }).then(canvas => {
+                    const link = document.createElement('a');
+                    const loadoutName = document.querySelector('.header-input').value || 'loadout';
+                    link.download = `loadout_${loadoutName.replace(/\s+/g, '_')}.png`;
+                    link.href = canvas.toDataURL('image/png');
+                    link.click();
+
+                    area.classList.remove('exporting');
+                    btn.style.opacity = '1';
+                });
+            }, 200);
+        });
+
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('input', function () {
+                this.value = this.value.toUpperCase();
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,322 @@
+{
+  "weapon_classes": [
+    {
+      "class_name": "Pistols & Revolvers (Пистолеты и Револьверы)",
+      "weapons": [
+        {
+          "name": "Major",
+          "translation": "Майор",
+          "full_name": "MA-P7 Major",
+          "type": "Пистолет (Полуавтоматический)",
+          "stats": {
+            "damage": "80 - 30",
+            "headshot_multiplier": "1.65x",
+            "limb_multiplier": "0.75x",
+            "firerate": "400.0 выстр/мин",
+            "capacity": 15,
+            "time_to_ads": "0.225 с",
+            "speed_penalty": "0.15 м/с"
+          },
+          "mods": [
+            {
+              "name": "LASER SIGHT",
+              "translation": "ЛАЗЕРНЫЙ ПРИЦЕЛ",
+              "cost_type": "HWR",
+              "cost_value": 20,
+              "effects": [
+                "-50% разброс при стрельбе от бедра и в альтернативном режиме",
+                "+25% прирост разброса от бедра",
+                "Видимый лазерный луч"
+              ]
+            },
+            {
+              "name": "SUPPRESSOR",
+              "translation": "ГЛУШИТЕЛЬ",
+              "cost_type": "HWR",
+              "cost_value": 30,
+              "effects": [
+                "Скрывает профиль на радаре при стрельбе",
+                "Трассеры не видны врагам (кроме экзотических патронов)",
+                "-50% вертикальная отдача",
+                "-15% скорость полета пули"
+              ]
+            },
+            {
+              "name": "SECURE GRIP",
+              "translation": "НАДЕЖНАЯ РУКОЯТКА",
+              "cost_type": "HWR",
+              "cost_value": 10,
+              "effects": [
+                "Иммунитет к обезоруживанию",
+                "2 сек. отключение врагов при попытке подбора или подключения нано-нити",
+                "+15% время прицеливания"
+              ]
+            },
+            {
+              "name": "HEAVY BARREL",
+              "translation": "ТЯЖЕЛЫЙ СТВОЛ",
+              "cost_type": "HWR",
+              "cost_value": 30,
+              "effects": [
+                "-25% вертикальная отдача",
+                "-50% прирост разброса",
+                "+15% время прицеливания"
+              ]
+            },
+            {
+              "name": "HIGH CAPACITY",
+              "translation": "УВЕЛИЧЕННАЯ ЕМКОСТЬ",
+              "cost_type": "HWR",
+              "cost_value": 25,
+              "effects": [
+                "Увеличенная емкость магазина",
+                "+15% время прицеливания",
+                "+0.15 м/с штраф к скорости оружия"
+              ]
+            },
+            {
+              "name": "CONTACT CHARGE",
+              "translation": "КОНТАКТНЫЙ ЗАРЯД",
+              "cost_type": "HWR",
+              "cost_value": 30,
+              "effects": [
+                "Детонирует при выбрасывании или обезоруживании",
+                "Взрывной урон целям в радиусе 2-4 м (50-25 урона)",
+                "+0.25 м/с штраф к скорости оружия"
+              ]
+            },
+            {
+              "name": "LIGHTWEIGHT FRAME",
+              "translation": "ОБЛЕГЧЕННАЯ РАМА",
+              "cost_type": "HWR",
+              "cost_value": 25,
+              "effects": [
+                "-15% время прицеливания",
+                "-50% штраф к скорости оружия",
+                "+25% отдача и прирост разброса"
+              ]
+            },
+            {
+              "name": "FRAG MAG",
+              "translation": "ОСКОЛОЧНЫЙ МАГАЗИН",
+              "cost_type": "TEC",
+              "cost_value": 25,
+              "effects": [
+                "Патрон разделяется на 4 снаряда",
+                "4 осколка за выстрел",
+                "25% от базового урона за осколок",
+                "-25% дальность нанесения урона",
+                "-0.25x множитель урона в голову"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Double-tap",
+          "translation": "Дуплет",
+          "full_name": "A-TAC 002 Double-tap",
+          "type": "Пистолет с отсечкой (2 выстрела)",
+          "stats": {
+            "damage": "65 - 40",
+            "headshot_multiplier": "1.5x",
+            "limb_multiplier": "0.75x",
+            "burst_delay": "0.25 с",
+            "firerate": "1200.0 в очереди | 400 общая выстр/мин",
+            "capacity": 24,
+            "time_to_ads": "0.225 с",
+            "speed_penalty": "0.2 м/с"
+          },
+          "mods": [
+            {
+              "name": "VX ACCELERATOR",
+              "translation": "УСКОРИТЕЛЬ VX",
+              "cost_type": "TEC",
+              "cost_value": 40,
+              "effects": [
+                "-100% падение урона на расстоянии",
+                "+50% скорость пули и пробитие окружения",
+                "-25% отдача, разброс и прирост разброса",
+                "0.15 с задержка перед стрельбой (раскрутка)"
+              ]
+            },
+            {
+              "note": "Остальные моды идентичны стандартным (Laser, Suppressor, Secure Grip, Heavy Barrel, Contact Charge, Lightweight Frame)"
+            }
+          ]
+        },
+        {
+          "name": "Deckard",
+          "translation": "Декард",
+          "full_name": "LDS SR .60 Deckard",
+          "type": "Револьвер (Полуавтоматический)",
+          "stats": {
+            "damage": "150 - 100",
+            "headshot_multiplier": "1.75x",
+            "limb_multiplier": "0.75x",
+            "firerate": "125.0 выстр/мин",
+            "capacity": 6,
+            "time_to_ads": "0.3 с",
+            "speed_penalty": "0.35 м/с"
+          },
+          "mods": [
+            {
+              "name": "SPEED LOADER",
+              "translation": "УСКОРИТЕЛЬ ЗАРЯЖАНИЯ",
+              "cost_type": "HWR",
+              "cost_value": 35,
+              "effects": [
+                "+50% скорость перезарядки"
+              ]
+            },
+            {
+              "name": "LIGHT TRIGGER",
+              "translation": "ЛЕГКИЙ СПУСК",
+              "cost_type": "HWR",
+              "cost_value": 40,
+              "effects": [
+                "+25% скорострельность (RPM)",
+                "+50% отдача и прирост разброса"
+              ]
+            },
+            {
+              "name": "WILDFIRE TRIGGER",
+              "translation": "СПУСК \"ДИКИЙ ОГОНЬ\"",
+              "cost_type": "TEC",
+              "cost_value": 40,
+              "effects": [
+                "Перевод в автоматический режим",
+                "+200% скорострельность (RPM)",
+                "+50% снижение отдачи",
+                "0.5 с задержка перед стрельбой (раскрутка)",
+                "-20% урон",
+                "+50% прирост разброса"
+              ]
+            },
+            {
+              "note": "Остальные моды идентичны стандартным (Laser, Suppressor, Secure Grip, Heavy Barrel, Contact Charge, Lightweight Frame)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "class_name": "PDW & Machine Pistols (Пистолеты-пулеметы)",
+      "weapons": [
+        {
+          "name": "Geist",
+          "translation": "Призрак",
+          "full_name": "W&S MP11 Geist",
+          "type": "PDW (Автоматический)",
+          "stats": {
+            "damage": "34 - 14",
+            "headshot_multiplier": "1.35x",
+            "limb_multiplier": "0.75x",
+            "firerate": "1000.0 выстр/мин",
+            "capacity": 30,
+            "time_to_ads": "0.225 с",
+            "speed_penalty": "0.3 м/с"
+          },
+          "mods": [
+            {
+              "name": "BRRRT TRIGGER",
+              "translation": "СПУСК \"BRRRT\"",
+              "cost_type": "TEC",
+              "cost_value": 30,
+              "effects": [
+                "+50% скорострельность (RPM)",
+                "Весь магазин опустошается при выстреле",
+                "+50% отдача и прирост разброса",
+                "-15% урон",
+                "Стрельбу нельзя прервать другими действиями"
+              ]
+            },
+            {
+              "note": "Остальные моды идентичны стандартным (Laser, Suppressor, Secure Grip, Heavy Barrel, High Capacity, Contact Charge, Lightweight Frame)"
+            }
+          ]
+        },
+        {
+          "name": "Omen",
+          "translation": "Омен",
+          "full_name": "LDS X9E Omen",
+          "type": "Автоматический пистолет",
+          "stats": {
+            "damage": "68 - 34",
+            "headshot_multiplier": "1.5x",
+            "limb_multiplier": "0.75x",
+            "firerate": "450.0 выстр/мин",
+            "capacity": 18,
+            "time_to_ads": "0.25 с",
+            "speed_penalty": "0.25 м/с"
+          },
+          "mods": [
+            {
+              "note": "Все моды стандартные (Laser, Suppressor, Secure Grip, Heavy Barrel, High Capacity, Contact Charge, Lightweight Frame)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "class_name": "Shotguns (Дробовики)",
+      "weapons": [
+        {
+          "name": "Cerberus",
+          "translation": "Цербер",
+          "full_name": "MA-950-S Cerberus",
+          "type": "Компактный дробовик (Полуавтоматический)",
+          "stats": {
+            "damage": "40 - 10 (за дробинку)",
+            "pellet_count": 8,
+            "headshot_multiplier": "1.25x",
+            "limb_multiplier": "0.75x",
+            "firerate": "125.0 выстр/мин",
+            "capacity": 3,
+            "time_to_ads": "0.275 с",
+            "speed_penalty": "0.4 м/с",
+            "special_note": "Из-за малого размера магазина стартует с 2 запасными магазинами"
+          },
+          "mods": [
+            {
+              "name": "LONG BARREL",
+              "translation": "ДЛИННЫЙ СТВОЛ",
+              "cost_type": "HWR",
+              "cost_value": 40,
+              "effects": [
+                "+50% скорость пули",
+                "-25% разброс дроби",
+                "+25% время прицеливания",
+                "+25% разброс при стрельбе от бедра"
+              ]
+            },
+            {
+              "name": "ADAPTIVE CHOKE",
+              "translation": "АДАПТИВНЫЙ ЧОК",
+              "cost_type": "TEC",
+              "cost_value": 30,
+              "effects": [
+                "-25% разброс дроби при прицеливании (ADS) или стойке акимбо",
+                "+15% время прицеливания"
+              ]
+            },
+            {
+              "name": "CRIPPLE GAUGE",
+              "translation": "КАЛИБР \"УВЕЧЬЕ\"",
+              "cost_type": "TEC",
+              "cost_value": 50,
+              "effects": [
+                "AOE отбрасывание при стрельбе в переднем конусе 5 м",
+                "2 с замедление (snare) врагов в радиусе, увечье (cripple) если в радиусе 2.5 м",
+                "-25% урон",
+                "+50% разброс дроби"
+              ]
+            },
+            {
+              "note": "Остальные моды стандартные (Laser, Suppressor, Secure Grip, Speed Loader, Contact Charge, Lightweight Frame)"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

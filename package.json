@@ -1,0 +1,21 @@
+{
+  "name": "ooa-database",
+  "version": "1.0.0",
+  "description": "Interactive OOA Game Database with search, dark cyberpunk theme, and Russian localization",
+  "main": "index.html",
+  "scripts": {
+    "start": "python server.py",
+    "dev": "python server.py"
+  },
+  "keywords": [
+    "game",
+    "database",
+    "guide",
+    "interactive",
+    "search"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {}
+}

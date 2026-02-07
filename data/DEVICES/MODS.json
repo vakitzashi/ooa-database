@@ -1,0 +1,314 @@
+{
+  "game_wiki_translation": {
+    "category": "Mods",
+    "general_info": {
+      "slots": "Игроки могут установить от 1 до 4 модов (1 по умолчанию, +1 Hardware, +1 Specialist, +1 Surplus).",
+      "restrictions": "Тяжелое и запасное оружие не модифицируется.",
+      "penalty_note": "Каждый мод добавляет минимум 0.05 м/с к штрафу скорости передвижения (кроме Lightweight Frame)."
+    },
+    "standard_mods": [
+      {
+        "name": "Burst Trigger (Спусковой крючок отсечки)",
+        "hwr": 45,
+        "description": "Изменяет механизм Warrant для стрельбы очередями.",
+        "stats": [
+          "Очередь по 2 выстрела",
+          "+300% скорострельность",
+          "+100% отдача",
+          "+100% разброс от бедра",
+          "+100% прирост разброса"
+        ],
+        "compatible": ["Warrant"]
+      },
+      {
+        "name": "Contact Charge (Контактный заряд)",
+        "hwr": 30,
+        "description": "Взрывчатка с детонацией через 1с после попадания или мгновенно от Нано-провода/урона.",
+        "stats": [
+          "Урон по области 2-4 м",
+          "50-25 урон (Sidearms)",
+          "75-25 урон (Primary)",
+          "100-25 урон (Heavy)",
+          "-0.25 м/с скорость передвижения"
+        ],
+        "compatible": ["Major", "Deckard", "Geist", "Cerberus", "Master-Key", "Icarus", "Custodian", "Vigil", "Inhibitor", "Sentinel", "Helix", "Nexus", "Typhon", "Omen", "Double-Tap", "Warrant"]
+      },
+      {
+        "name": "External Mag (Внешний магазин)",
+        "hwr": 30,
+        "description": "Заменяет внутренний магазин на внешний.",
+        "stats": [
+          "Перезарядка магазинами",
+          "Увеличен запас патронов",
+          "+15% время прицеливания",
+          "-0.15 м/с скорость передвижения"
+        ],
+        "compatible": ["Master-Key", "Warrant"]
+      },
+      {
+        "name": "Foregrip (Передняя рукоятка)",
+        "hwr": 15,
+        "stats": [
+          "-50% горизонтальная отдача",
+          "-25% время прицеливания",
+          "-0.15 м/с скорость передвижения"
+        ],
+        "compatible": ["Icarus", "Custodian", "Inhibitor", "Sentinel", "Nexus", "Typhon"]
+      },
+      {
+        "name": "Heavy Barrel (Тяжелый ствол)",
+        "hwr": 30,
+        "stats": [
+          "-25% вертикальная отдача",
+          "-50% прирост разброса",
+          "+15% время прицеливания"
+        ],
+        "compatible": ["Major", "Deckard", "Geist", "Icarus", "Custodian", "Inhibitor", "Sentinel", "Helix", "Nexus", "Omen", "Double-Tap"]
+      },
+      {
+        "name": "Heavy Receiver (Тяжелая ствольная коробка)",
+        "hwr": 40,
+        "description": "Позволяет Inhibitor использовать пули большего калибра.",
+        "stats": [
+          "+50% урон",
+          "+25% скорость снаряда + пробитие",
+          "-35% скорострельность",
+          "-25 объем магазина"
+        ],
+        "compatible": ["Inhibitor"]
+      },
+      {
+        "name": "High Capacity (Увеличенная емкость)",
+        "hwr": 25,
+        "stats": [
+          "Увеличен запас патронов",
+          "+15% время прицеливания",
+          "-0.15 м/с скорость передвижения"
+        ],
+        "compatible": ["Major", "Geist", "Custodian", "Vigil", "Sentinel", "Nexus", "Typhon", "Omen"]
+      },
+      {
+        "name": "HV Barrel (Высокоскоростной ствол)",
+        "hwr": 40,
+        "description": "Повышает начальную скорость снаряда Warrant.",
+        "stats": [
+          "+25% скорость снаряда",
+          "-0.25 м/с скорость передвижения"
+        ],
+        "compatible": ["Warrant"]
+      },
+      {
+        "name": "Laser Sight (Лазерный прицел)",
+        "hwr": 20,
+        "stats": [
+          "-50% разброс от бедра/альт. стойка",
+          "-25% прирост разброса от бедра/альт. стойка",
+          "-25% разброс Akimbo + прирост",
+          "Видимый лазер"
+        ],
+        "compatible": ["Major", "Deckard", "Geist", "Cerberus", "Master-Key", "Icarus", "Custodian", "Inhibitor", "Helix", "Nexus", "Typhon", "Omen", "Double-Tap"]
+      },
+      {
+        "name": "Light Trigger (Легкий спуск)",
+        "hwr": 40,
+        "description": "Ускоряет темп стрельбы Deckard и Warrant.",
+        "stats": [
+          "+25% скорострельность",
+          "-50% прирост отдачи + разброса"
+        ],
+        "compatible": ["Deckard", "Warrant"]
+      },
+      {
+        "name": "Lightweight Frame (Облегченная рама)",
+        "hwr": 25,
+        "description": "Заменяет скелет оружия на легкий сплав.",
+        "stats": [
+          "-15% время прицеливания",
+          "-50% штраф скорости оружия",
+          "+25% прирост отдачи + разброса"
+        ],
+        "compatible": ["Major", "Deckard", "Geist", "Cerberus", "Master-Key", "Icarus", "Custodian", "Vigil", "Inhibitor", "Sentinel", "Helix", "Nexus", "Typhon", "Omen", "Double-Tap", "Warrant"]
+      },
+      {
+        "name": "Long Barrel (Длинный ствол)",
+        "hwr": 40,
+        "description": "Увеличивает дальность Cerberus.",
+        "stats": [
+          "+50% скорость снаряда",
+          "-25% разброс дроби",
+          "+25% время прицеливания",
+          "+25% разброс от бедра"
+        ],
+        "compatible": ["Cerberus"]
+      },
+      {
+        "name": "Quick Bolt (Быстрый затвор)",
+        "hwr": 45,
+        "stats": [
+          "+15% скорость досылания",
+          "+15% время прицеливания"
+        ],
+        "compatible": ["Vigil"]
+      },
+      {
+        "name": "Secure Grip (Надежный хват)",
+        "hwr": 10,
+        "description": "Предотвращает обезоруживание.",
+        "stats": [
+          "Иммунитет к разоружению",
+          "2с блокировки эмоций врага при попытке захвата",
+          "+15% время прицеливания"
+        ],
+        "compatible": ["Major", "Deckard", "Geist", "Cerberus", "Master-Key", "Icarus", "Custodian", "Vigil", "Inhibitor", "Sentinel", "Helix", "Nexus", "Typhon", "Omen", "Double-Tap", "Warrant"]
+      },
+      {
+        "name": "Speed Loader (Ускоритель заряжания)",
+        "hwr": 35,
+        "stats": [
+          "+50% скорость перезарядки"
+        ],
+        "compatible": ["Deckard", "Cerberus"]
+      },
+      {
+        "name": "Suppressor (Глушитель)",
+        "hwr": 30,
+        "stats": [
+          "Скрывает на радаре",
+          "Скрывает трассеры (не экзот.)",
+          "-50% вертикальная отдача",
+          "-15% скорость снаряда"
+        ],
+        "compatible": ["Major", "Deckard", "Geist", "Cerberus", "Master-Key", "Icarus", "Custodian", "Vigil", "Inhibitor", "Sentinel", "Helix", "Nexus", "Typhon", "Omen", "Double-Tap"]
+      },
+      {
+        "name": "Tactical Foregrip (Тактическое цевье)",
+        "hwr": 30,
+        "description": "Улучшенное цевье для Master-Key.",
+        "stats": [
+          "+15% скорость досылания",
+          "-25% разброс дроби"
+        ],
+        "compatible": ["Master-Key"]
+      }
+    ],
+    "tech_mods": [
+      {
+        "name": "Adaptive Choke (Адаптивный чок)",
+        "tec": 30,
+        "description": "Уменьшает разброс дроби в прицеле.",
+        "stats": [
+          "-25% разброс дроби в ADS/альт. стойке",
+          "+15% время прицеливания"
+        ],
+        "compatible": ["Master-Key", "Cerberus", "Typhon"]
+      },
+      {
+        "name": "Brrrt Trigger (Брррт-спуск)",
+        "tec": 30,
+        "description": "Geist выпускает весь магазин одной очередью.",
+        "stats": [
+          "+50% скорострельность",
+          "Авто-разрядка магазина",
+          "+50% отдача, разброс и прирост",
+          "-15% урон",
+          "Нельзя прервать стрельбу"
+        ],
+        "compatible": ["Geist"]
+      },
+      {
+        "name": "Cripple Gauge (Калечащий калибр)",
+        "tec": 50,
+        "description": "Создает контузящую волну у дробовиков.",
+        "stats": [
+          "АОЕ-отбрасывание в конусе 5м",
+          "2с замедление (замедление 'cripple' в 2.5м)",
+          "-25% урон",
+          "+50% разброс дроби"
+        ],
+        "compatible": ["Cerberus", "Master-Key"]
+      },
+      {
+        "name": "Frag Mag (Разрывной магазин)",
+        "tec": 25,
+        "description": "Пули Major и Sentinel дробятся на фрагменты.",
+        "stats": [
+          "4 фрагмента за выстрел",
+          "25% базового урона на фрагмент",
+          "-25% дальность",
+          "-0.25x урон в голову"
+        ],
+        "compatible": ["Major", "Sentinel"]
+      },
+      {
+        "name": "Hammer-Head (Молот)",
+        "tec": 45,
+        "description": "Custodian копит энергию и выпускает её каждым 4-м выстрелом.",
+        "stats": [
+          "200% урона на каждом 4-м выстреле",
+          "200% верт. отдачи на каждом 4-м выстреле",
+          "-25% урон",
+          "-25% прирост разброса"
+        ],
+        "compatible": ["Custodian"]
+      },
+      {
+        "name": "Havok Cycler (Циклер Хаоса)",
+        "tec": 45,
+        "description": "Увеличивает темп стрельбы Icarus/Inhibitor по мере огня.",
+        "stats": [
+          "0-100% бонус скорострельности (от 0-20% магазина)",
+          "+50% прирост разброса",
+          "-35% базовая скорострельность"
+        ],
+        "compatible": ["Icarus", "Inhibitor"]
+      },
+      {
+        "name": "Stabilizer (Стабилизатор)",
+        "tec": 45,
+        "stats": [
+          "-75% отдача в ADS",
+          "-15% время прицеливания",
+          "-50% скорость в ADS"
+        ],
+        "compatible": ["Vigil", "Inhibitor", "Sentinel", "Nexus"]
+      },
+      {
+        "name": "VX Accelerator (Ускоритель VX)",
+        "tec": 40,
+        "description": "Увеличивает мощь Helix/Vigil за счет задержки выстрела.",
+        "stats": [
+          "-100% падение урона",
+          "+50% скорость снаряда + пробитие",
+          "-25% отдача, разброс и прирост",
+          "0.15с задержка выстрела"
+        ],
+        "compatible": ["Vigil", "Helix", "Double-tap"]
+      },
+      {
+        "name": "Wildfire Trigger (Спусковой крючок 'Дикий огонь')",
+        "tec": 40,
+        "description": "Превращает Deckard в полноценный автомат.",
+        "stats": [
+          "Режим: Автомат",
+          "+200% скорострельность",
+          "+50% отдача",
+          "0.5с задержка выстрела",
+          "-20% урон",
+          "+50% прирост разброса"
+        ],
+        "compatible": ["Deckard"]
+      },
+      {
+        "name": "Vortex Receiver (Вихревая ствольная коробка)",
+        "tec": 35,
+        "stats": [
+          "+25% скорострельность",
+          "-20% разброс дроби за выстрел (до 100%)",
+          "+100% прирост отдачи",
+          "Снижен объем магазина"
+        ],
+        "compatible": ["Typhon"]
+      }
+    ]
+  }
+}

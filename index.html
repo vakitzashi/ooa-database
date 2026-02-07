@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+    <meta name="theme-color" content="#211D1E">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="OOA DB">
+    <meta name="description" content="Интерактивный гайд по игре OOA с полной поддержкой поиска">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>Гайд по OOA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Кнопка меню для мобильных -->
+        <button class="menu-toggle" id="menu-toggle">☰</button>
+
+        <!-- Боковое меню -->
+        <aside class="sidebar" id="sidebar">
+            <h1 class="sidebar-title">OOA<br>Database <span class="beta-tag">(beta)</span></h1>
+            <nav class="menu" id="menu">
+                <!-- Динамически заполняется из JS -->
+            </nav>
+            <div class="sidebar-credits">
+                Powered by <a href="https://github.com/vakitzashi" target="_blank"
+                    rel="noopener noreferrer">Vakitzashi</a> x <a href="https://www.twitch.tv/hydraxgod" target="_blank"
+                    rel="noopener noreferrer">HYDRAxGOD</a>
+            </div>
+        </aside>
+
+        <!-- Основной контент -->
+        <main class="content">
+            <div class="search-container">
+                <input type="text" id="search-input" class="search-input" placeholder="🔍 Поиск по всем карточкам..."
+                    autocomplete="off">
+            </div>
+            <div id="content-area" class="content-area">
+                <p class="placeholder">Выберите категорию в меню</p>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,294 @@
+{
+  "equipment": [
+    {
+      "name": "AAP Turret",
+      "translation": "Автоматическая турель",
+      "stats_matrix": {
+        "hwr": 45,
+        "range_m": 25,
+        "damage": "20-10",
+        "rpm": 600,
+        "ammo_capacity": 50,
+        "max_efficiency": "+25% дальность и емкость магазина",
+        "features": [
+          "крепится к поверхностям",
+          "крепится к оболочкам",
+          "может быть отключено"
+        ]
+      },
+      "gameplay": {
+        "projectile_velocity_ms": 400,
+        "spread_degrees": 4,
+        "targets": [
+          "враги",
+          "устройства",
+          "взрывчатка"
+        ]
+      },
+      "technical_stats": {
+        "type": "Стандартное",
+        "experimental": true,
+        "action": "Бросок",
+        "throw_velocity_ms": 10,
+        "health": 100,
+        "activation": "Обнаружение приближения",
+        "duration_s": 60,
+        "cooldown_s": 45,
+        "speed_penalty_ms": 0.35
+      }
+    },
+    {
+      "name": "Anchor",
+      "translation": "Якорь",
+      "stats_matrix": {
+        "tec": 0,
+        "max_efficiency": "4 сек перегрузка при притягивании",
+        "features": [
+          "крепление нано-нити",
+          "восстанавливает доп. энергию",
+          "снимает замедление",
+          "используется союзниками",
+          "крепится"
+        ]
+      },
+      "technical_stats": {
+        "type": "Стандартное",
+        "experimental": false,
+        "action": "Бросок",
+        "throw_velocity_ms": 25,
+        "health": 200,
+        "activation": "Активация",
+        "duration_s": 120,
+        "cooldown_s": 5,
+        "speed_penalty_ms": 0.15
+      }
+    },
+    {
+      "name": "Deadzone",
+      "translation": "Мертвая зона",
+      "stats_matrix": {
+        "tec": 50,
+        "zone_diameter_m": 16,
+        "max_efficiency": "5 урона по здоровью каждые 0.5 сек",
+        "features": [
+          "отключает и замедляет врагов",
+          "отключает вражеские устройства",
+          "скрывает союзников",
+          "крепится"
+        ]
+      },
+      "gameplay": {
+        "radius_m": 8
+      },
+      "technical_stats": {
+        "type": "Стандартное",
+        "experimental": true,
+        "action": "Бросок",
+        "throw_velocity_ms": 15,
+        "health": 100,
+        "activation": "Активация",
+        "duration_s": 30,
+        "cooldown_s": 45,
+        "speed_penalty_ms": 0.25
+      }
+    },
+    {
+      "name": "Detonator",
+      "translation": "Детонатор",
+      "stats_matrix": {
+        "hwr": 5,
+        "explosive_damage": "125-50",
+        "radius_m": "2-4",
+        "max_efficiency": "50% снижение задержки активации",
+        "features": [
+          "отбрасывание",
+          "может быть отключено"
+        ]
+      },
+      "gameplay": {
+        "bleed_damage_bonus": "50%"
+      },
+      "technical_stats": {
+        "type": "Стандартное",
+        "experimental": false,
+        "action": "Бросок",
+        "throw_velocity_ms": 25,
+        "activation": "При ударе",
+        "activation_delay_s": 1,
+        "cooldown_s": 45,
+        "speed_penalty_ms": 0.15
+      }
+    },
+    {
+      "name": "Firecracker",
+      "translation": "Петарда",
+      "stats_matrix": {
+        "hwr": 15,
+        "impact_damage_explosive": "25-15",
+        "impact_damage_fire": "50-30",
+        "impact_radius_m": "2-3",
+        "activation_fire_damage": 100,
+        "activation_radius_m": 5,
+        "projectiles_count": [
+          10,
+          15
+        ],
+        "max_efficiency": "100% длительности"
+      },
+      "technical_stats": {
+        "type": "Стандартное",
+        "experimental": false,
+        "action": "Бросок",
+        "throw_velocity_ms": 20,
+        "activation": "Активация / Удар",
+        "duration_s": 7.5,
+        "cooldown_s": 45,
+        "speed_penalty_ms": 0.2
+      }
+    },
+    {
+      "name": "Laser Wire",
+      "translation": "Лазерная растяжка",
+      "stats_matrix": {
+        "hwr": 10,
+        "vital_damage": 75,
+        "bleed_damage_ps": 10,
+        "snare_duration_s": 4,
+        "charges": 2,
+        "max_efficiency": "Накладывает кровотечение",
+        "features": [
+          "крепится",
+          "может быть отключено"
+        ]
+      },
+      "gameplay": {
+        "activation_range_m": 5,
+        "projectile_type": "нано-иглы"
+      },
+      "technical_stats": {
+        "type": "Стандартное",
+        "experimental": false,
+        "action": "Бросок",
+        "throw_velocity_ms": 15,
+        "health": 100,
+        "activation": "Активация",
+        "duration_s": 60,
+        "cooldown_s": 45,
+        "speed_penalty_ms": 0.2
+      }
+    },
+    {
+      "name": "Proximity Mine",
+      "translation": "Мина направленного действия",
+      "stats_matrix": {
+        "hwr": 10,
+        "explosive_damage": "125-50",
+        "radius_m": "2-5",
+        "max_efficiency": "50% снижение задержки активации",
+        "features": [
+          "отбрасывание",
+          "крепится",
+          "может быть отключено"
+        ]
+      },
+      "gameplay": {
+        "bleed_damage_bonus": "50%"
+      },
+      "technical_stats": {
+        "type": "Стандартное",
+        "experimental": false,
+        "action": "Бросок",
+        "throw_velocity_ms": 15,
+        "activation": "Активация",
+        "activation_delay_s": 0.75,
+        "duration_s": 60,
+        "cooldown_s": 45,
+        "speed_penalty_ms": 0.15
+      }
+    },
+    {
+      "name": "Relocator",
+      "translation": "Релокатор",
+      "stats_matrix": {
+        "tec": 40,
+        "max_efficiency": "50 здоровья + восстановление макс. здоровья",
+        "features": [
+          "перемещение к устройству",
+          "снятие метки",
+          "крепится",
+          "может быть отключено"
+        ]
+      },
+      "technical_stats": {
+        "type": "Стандартное",
+        "experimental": true,
+        "action": "Бросок",
+        "throw_velocity_ms": 25,
+        "activation": "Активация",
+        "duration_s": 60,
+        "cooldown_s": 30,
+        "speed_penalty_ms": 0.15
+      }
+    },
+    {
+      "name": "Satchel Charge",
+      "translation": "Взрывпакет",
+      "stats_matrix": {
+        "hwr": 20,
+        "explosive_damage": "150-50",
+        "radius_m": "2-5",
+        "max_efficiency": "50% нанесенного урона добавочно огнем",
+        "features": [
+          "отбрасывание",
+          "сбивание с ног",
+          "крепится",
+          "может быть отключено"
+        ]
+      },
+      "gameplay": {
+        "bleed_damage_bonus": "50%"
+      },
+      "technical_stats": {
+        "type": "Стандартное",
+        "experimental": false,
+        "action": "Бросок",
+        "throw_velocity_ms": 10,
+        "activation": "Активация",
+        "duration_s": 60,
+        "cooldown_s": 45,
+        "speed_penalty_ms": 0.3
+      }
+    },
+    {
+      "name": "Tempest",
+      "translation": "Буря",
+      "stats_matrix": {
+        "tec": 10,
+        "overcharge_duration_s": 5,
+        "max_efficiency": "100% длительности",
+        "features": [
+          "скрывает обзор",
+          "замедляет врагов",
+          "статус обнаружения",
+          "может быть убрано огнем"
+        ]
+      },
+      "gameplay": {
+        "main_cloud_radius_m": 3.5,
+        "small_clouds_radius_m": 1.75,
+        "feature": "меняет владельца, если подстрелить до детонации"
+      },
+      "technical_stats": {
+        "type": "Стандартное",
+        "experimental": false,
+        "action": "Бросок",
+        "throw_velocity_ms": 25,
+        "activation": "При ударе",
+        "activation_delay_s": 1,
+        "duration_s": 7.5,
+        "cooldown_s": 60,
+        "speed_penalty_ms": 0.25
+      }
+    }
+  ]
+}
